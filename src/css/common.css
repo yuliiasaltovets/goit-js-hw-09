@@ -16,3 +16,100 @@ img {
   display: block;
   max-width: 100%;
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  border: 1px ;
+  border-color: rgb(34, 30, 33);
+  margin-top: 20px;
+  margin-right: 50px;
+  margin-bottom: 0px;
+  background-color: rgb(243, 234, 237);
+  display: flex;
+  color: rgb(20, 18, 19);
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  padding: auto;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  width: 110px;
+  height: 70px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+}
+
+input {
+  border: 1px ;
+  border-color: rgb(243, 77, 179);
+  margin-top: 20px;
+  margin-right: 50px;
+  background-color: rgb(243, 234, 237);
+  display: flex;
+  color: rgb(20, 18, 19);
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  padding: auto;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  width: 110px;
+  height: 70px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+
+}
+
+button{
+  margin-top: 20px;
+  margin-right: 50px;
+  background-color: rgb(243, 234, 237);
+  display: flex;
+  color: rgb(20, 18, 19);
+  justify-content: center;
+  border-radius: 10px;
+  border: none;
+  align-items: center;
+  padding: auto;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  width: 100px;
+  height: 70px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+}
+.field{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.value {
+  margin-right: 5px;
+}
+
+.timer {
+  margin-top: 20px;
+  background-color: rgb(243, 77, 179);
+  display: flex;
+  color: rgb(94, 5, 12);
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  padding: auto;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  width: 600px;
+  height: 70px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+  
+
+
+}
+
+.label {
+  margin-right: 20px;
+}
