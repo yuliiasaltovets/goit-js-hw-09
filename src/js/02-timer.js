@@ -1,71 +1,69 @@
+
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 const refs = {
-  dateTimePicker: document.querySelector('#datetime-picker'),
+  dateTime: document.querySelector('#datetime-picker'),
   btnStart: document.querySelector('[data-start]'),
-  days: document.querySelector('[data-days]'),
-  hours: document.querySelector('[data-hours]'),
-  minutes: document.querySelector('[data-minutes]'),
-  seconds: document.querySelector('[data-seconds]'),
- 
+  dataDays: document.querySelector('[data-days]'),
+  dataHours: document.querySelector('[data-hours]'),
+  dataMinutes: document.querySelector('[data-minutes]'),
+  dataSeconds: document.querySelector('[data-seconds]'),
 };
 
-let selectedDate = null;
 let timerId = null;
+let selectedDate = null;
 
 refs.btnStart.disabled = true;
+refs.btnStart.addEventListener('click', onTimer);
+
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
+  // ============IF ELSE================
   onClose(selectedDates) {
-    if (selectedDates[0].getTime() <= Date.now()) {
-      Notiflix.Notify.failure('Please choose a date in the future');
-    } else {
-      refs.btnStart.disabled = false;
-      Notiflix.Notify.success('Starting');
+    if (selectedDates[0].getTime() >= Date.now()) {
       selectedDate = selectedDates[0];
+      refs.btnStart.disabled = false;
+      Notiflix.Notify.success('Push the button');
+    } else {
+      Notiflix.Notify.failure('Please choose a date in the future');
     }
   },
 };
 
-flatpickr(refs.dateTimePicker, options);
+flatpickr(refs.dateTime, options);
 
-refs.btnStart.addEventListener('click', onTimer);
+// ========Finding difference============
+function onTimer() {
+  timerId = setInterval(onDate, 1000);
+}
 
+function onDate() {
+  const timeMs = selectedDate.getTime() - Date.now();
 
-function onTime() {
-  const  timeDate = Date.now() - selectedDate.getDate();
-  console.log(selectedDate.getDate());
-  if (timeDate < 0) {
+  if (timeMs < 0) {
     clearInterval(timerId);
     return;
   }
 
-  onDateConverts(convertMs(timeDate));
+  onTimerUpd(convertTime(timeMs));
 }
-
-function onTimer() {
-  timerId = setInterval(onTime, 1000);
+// ===========Converting the time===============
+function onTimerUpd({ days, hours, minutes, seconds }) {
+  refs.dataDays.textContent = onZero(days);
+  refs.dataHours.textContent = onZero(hours);
+  refs.dataMinutes.textContent = onZero(minutes);
+  refs.dataSeconds.textContent = onZero(seconds);
 }
-
-function onConverts(value) {
+function onZero(value) {
   return value.toString().padStart(2, '0');
 }
 
-function onDateConverts({ days, hours, minutes, seconds }) {
-  refs.days.value = onConverts(days);
-  refs.hours.textContent = onConverts(hours);
-  refs.minutes.textContent = onConverts(minutes);
-  refs.seconds.textContent = onConverts(seconds);
-}
-
-
-
-function convertMs(ms) {
+function convertTime(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
@@ -82,7 +80,4 @@ function convertMs(ms) {
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
-}
- 
-
-  
+} 
